@@ -1,15 +1,16 @@
-import React, { useState } from 'react';
-import RestCard from './components/RestaurantsPage/RestaurantCard/RestCard';
-import { RestCardType, Type } from './interfaces';
-import { test_restaurant, test_types } from './test_data';
+import React, { useState, useEffect } from 'react';
 import './App.css';
+import { Switch, Route } from 'react-router-dom';
+import RestaurantPage from './components/RestaurantsPage';
 
 function App() {
-  const [restaurant] = useState<RestCardType>(test_restaurant);
-  const [types] = useState<Type[]>(test_types);
   return (
     <div className='App'>
-      <RestCard types={types} restaurant={restaurant} />
+      <Switch>
+        <Route path='/'>
+          <RestaurantPage />
+        </Route>
+      </Switch>
     </div>
   );
 }

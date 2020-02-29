@@ -9,6 +9,7 @@ import { RestCardMain } from '../../../styles/RestaurantCards/styled.RestCardMai
 interface RestCardProps {
   restaurant: RestCardType;
   types: Type[];
+  key: number;
 }
 
 const RestCard: React.FC<RestCardProps> = ({ restaurant, types }) => {

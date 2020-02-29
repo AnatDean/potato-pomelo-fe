@@ -23,7 +23,7 @@ const CardTypesPanel: React.FC<CardTypesPanelProps> = ({
             className='type-panel-tile'
             key={type_id}
             highlighted={isPresent}>
-            <button disabled={!isPresent}>
+            <button>
               <img src={typeImages[type].img} alt={type} />
             </button>
           </TypesPanel>
