@@ -6,12 +6,10 @@ interface TypesPanelProps {
 }
 
 export const TypesPanel = styled.li<TypesPanelProps>`
-  width: 25%;
+  width: 33.3%;
   height: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
-  border-right: solid 2px ${myTheme.colors.neutral};
 
   background-color: ${props => {
     return props.highlighted

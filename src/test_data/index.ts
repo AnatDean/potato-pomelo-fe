@@ -3,10 +3,11 @@ import { RestCardType, Type } from '../interfaces';
 export const test_restaurant: RestCardType = {
   rest_id: 1,
   rest_name: 'rest-a',
-  open_late: true,
-  serves_hot_meals: true,
   area_id: 1,
   website: 'www.rest-a.com',
+  closes_at: '22:00:00',
+  opens_at: '09:30:00',
+  has_activities: true,
   rest_types: [
     {
       type_id: 1,
@@ -33,9 +34,5 @@ export const test_types: Type[] = [
   {
     type_id: 3,
     type: 'restaurant'
-  },
-  {
-    type_id: 4,
-    type: 'market'
   }
 ];

@@ -1,38 +1,46 @@
 import React from 'react';
 import { InfoPanelButton } from '../../../styles/RestaurantCards/styled.InfoPanelTile';
 import { InfoPanelImages } from './CardImages';
+import moment from 'moment';
 interface CardInfoPanelProps {
   info: {
-    open_late: boolean;
-    serves_hot_meals: boolean;
+    opens_at: string;
+    closes_at: string;
+    has_activities: boolean;
   };
 }
 
 const CardInfoPanel: React.FC<CardInfoPanelProps> = ({
-  info: { open_late, serves_hot_meals }
+  info: { closes_at, opens_at, has_activities }
 }) => {
-  const {
-    nightImage,
-    dayImage,
-    hotFoodImage,
-    noHotFoodImage
-  } = InfoPanelImages;
+  const { hasActivitiesImage } = InfoPanelImages;
+  const [o_aHour, o_aMinute] = opens_at.slice(0, -3).split(':');
+  const [c_aHour, c_aMinute] = closes_at.slice(0, -3).split(':');
+
+  const openingTimeMoment = moment()
+    .hour(+o_aHour)
+    .minute(+o_aMinute);
+
+  const closingTimeMoment = moment()
+    .hour(+c_aHour)
+    .minute(+c_aMinute);
+
+  const isCurrentlyOpen: boolean = moment().isBetween(
+    openingTimeMoment,
+    closingTimeMoment
+  );
   return (
     <ul className='info-panels'>
-      <InfoPanelButton className='info-panel-tile'>
-        <button>
-          <img
-            src={open_late ? nightImage.img : dayImage.img}
-            alt={open_late ? nightImage.alt : dayImage.alt}
-          />
-        </button>
+      <InfoPanelButton
+        isCurrentlyOpen={isCurrentlyOpen}
+        className='info-panel-tile'>
+        <p>{closes_at.slice(0, -3)}</p>
       </InfoPanelButton>
-      <InfoPanelButton className='info-panel-tile'>
+      <InfoPanelButton
+        hasActivities={has_activities}
+        className='info-panel-tile'>
         <button>
-          <img
-            src={serves_hot_meals ? hotFoodImage.img : noHotFoodImage.img}
-            alt={serves_hot_meals ? hotFoodImage.alt : noHotFoodImage.alt}
-          />
+          <img src={hasActivitiesImage.img} alt={hasActivitiesImage.alt} />
         </button>
       </InfoPanelButton>
     </ul>

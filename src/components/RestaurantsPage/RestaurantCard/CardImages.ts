@@ -10,29 +10,20 @@ export const InfoPanelImages: any = {
     alt: 'daytime only'
   },
 
-  hotFoodImage: {
-    img: `${imgUrl}/rice-bowl.png`,
-    alt: 'hot food'
-  },
-
-  noHotFoodImage: {
-    img: `${imgUrl}/multiply--v1.png`,
-    alt: 'no hot food'
+  hasActivitiesImage: {
+    img: `${imgUrl}/football2.png`,
+    alt: 'has activities image'
   }
 };
 
 export const typeImages: any = {
   bar: {
-    img: 'https://img.icons8.com/material-outlined/24/000000/bar.png'
+    img: `${imgUrl}/bar.png`
   },
   restaurant: {
-    img: 'https://img.icons8.com/material-outlined/24/000000/dining-room.png'
+    img: `${imgUrl}/dining-room.png`
   },
   cafe: {
-    img: 'https://img.icons8.com/material-outlined/24/000000/cafe.png'
-  },
-  market: {
-    img:
-      'https://img.icons8.com/material-outlined/24/000000/furniture-store.png'
+    img: `${imgUrl}/cafe.png`
   }
 };

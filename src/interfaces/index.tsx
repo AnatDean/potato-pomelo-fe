@@ -12,8 +12,9 @@ export type RestType = {
 export type RestCardType = {
   rest_id: number;
   rest_name: string;
-  open_late: boolean;
-  serves_hot_meals: boolean;
+  closes_at: string;
+  opens_at: string;
+  has_activities: boolean;
   area_id: number;
   website: string;
   rest_types: RestType[];
