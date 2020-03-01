@@ -6,17 +6,28 @@ import FormCheckBox from './FormCheckBox';
 
 interface CheckBoxSectionProps {
   title: string;
+  property: string;
   data: any;
+  alt?: string;
+  imgUrl?: string;
 }
-const CheckBoxSection: React.FC<CheckBoxSectionProps> = ({ title, data }) => {
+const CheckBoxSection: React.FC<CheckBoxSectionProps> = ({
+  title,
+  property,
+  data,
+  alt,
+  imgUrl
+}) => {
   return (
     <ModalFormSection>
       <ModalBar className='form-bar'>
-        <h2>{`${title[0].toUpperCase()}${title.slice(1)}s`}</h2>
+        <h2>
+          {title} {imgUrl && <img src={imgUrl} alt={alt} />}{' '}
+        </h2>
       </ModalBar>
       <ModalButtonList>
         {data.map((option: any) => {
-          return <FormCheckBox display={title} option={option} />;
+          return <FormCheckBox display={property} option={option} />;
         })}
       </ModalButtonList>
     </ModalFormSection>

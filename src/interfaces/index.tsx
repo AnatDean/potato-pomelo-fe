@@ -3,6 +3,13 @@ export type Type = {
   type: string;
 };
 
+export type Area = {
+  restaurant_count: number;
+  area_id: number;
+  area_name: string;
+  location: string;
+};
+
 export type RestType = {
   type_id: number;
   rest_type_id: number;

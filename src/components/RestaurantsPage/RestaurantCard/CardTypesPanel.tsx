@@ -1,7 +1,7 @@
 import React from 'react';
 import { RestType, Type } from '../../../interfaces';
 import { TypesPanel } from '../../../styles/RestaurantCards/styled.TypesPanel';
-import { typeImages } from './CardImages';
+import { images } from '../../../styles/CardImages';
 
 interface CardTypesPanelProps {
   rest_types: RestType[];
@@ -24,7 +24,7 @@ const CardTypesPanel: React.FC<CardTypesPanelProps> = ({
             key={type_id}
             highlighted={isPresent}>
             <button>
-              <img src={typeImages[type].img} alt={type} />
+              <img src={images[type].img} alt={type} />
             </button>
           </TypesPanel>
         );

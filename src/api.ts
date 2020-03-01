@@ -13,3 +13,9 @@ export const getTypes = (): Promise<any> => {
     return types;
   });
 };
+
+export const getAreas = (): Promise<any> => {
+  return api.get('/areas').then(({ data: { areas } }) => {
+    return areas;
+  });
+};

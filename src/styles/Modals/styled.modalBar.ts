@@ -16,4 +16,5 @@ export const ModalBar = styled.section<ModalBarProps>`
     );
   }}
   padding-top: 0.5em;
+  align-items: center;  
 `;

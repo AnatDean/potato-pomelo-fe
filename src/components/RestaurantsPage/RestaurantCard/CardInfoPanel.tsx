@@ -1,6 +1,6 @@
 import React from 'react';
 import { InfoPanelButton } from '../../../styles/RestaurantCards/styled.InfoPanelTile';
-import { InfoPanelImages } from './CardImages';
+import { images } from '../../../styles/CardImages';
 import moment from 'moment';
 interface CardInfoPanelProps {
   info: {
@@ -13,7 +13,7 @@ interface CardInfoPanelProps {
 const CardInfoPanel: React.FC<CardInfoPanelProps> = ({
   info: { closes_at, opens_at, has_activities }
 }) => {
-  const { hasActivitiesImage } = InfoPanelImages;
+  const { hasActivitiesImage } = images;
   const [o_aHour, o_aMinute] = opens_at.slice(0, -3).split(':');
   const [c_aHour, c_aMinute] = closes_at.slice(0, -3).split(':');
 
