@@ -115,3 +115,34 @@ nav {
   display: flex;
   justify-content: space-evenly;
 }
+.modal-top {
+  display: grid;
+  grid-template-columns: 15% 70% 15%;
+  grid-template-rows: 1fr;
+  grid-template-areas: 'XButton title other';
+  align-items: center;
+}
+
+.modal-top > button {
+  grid-area: XButton;
+}
+
+.modal-top > h2 {
+  grid-area: title;
+}
+
+.modal-bottom {
+  display: flex;
+  justify-content: space-around;
+}
+
+.form-bar {
+  text-align: start;
+}
+.form-bar > h2 {
+  margin-left: 1em;
+}
+
+#modal {
+  height: 100vh;
+}

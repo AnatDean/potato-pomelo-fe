@@ -20,6 +20,10 @@ const Header: React.FC<{}> = () => {
           {' '}
           <p>Home</p>
         </Link>
+        <Link to='/filter'>
+          {' '}
+          <p>Filter</p>
+        </Link>
         <Link to='/add'>
           {' '}
           <p>Add a restaurant</p>

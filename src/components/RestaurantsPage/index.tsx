@@ -3,6 +3,8 @@ import { getRestaurants, getTypes } from '../../api';
 import { RestCardType, Type } from '../../interfaces';
 import RestaurantList from './RestaurantList';
 import Loading from '../Loading';
+import FilterModal from './FilterModal';
+import { Switch, Route } from 'react-router-dom';
 
 const RestaurantPage: React.FC<{}> = () => {
   const [restaurants, setRestaurants] = useState<RestCardType[] | []>([]);
@@ -21,7 +23,16 @@ const RestaurantPage: React.FC<{}> = () => {
   return (
     <>
       {isLoading && <Loading />}
-      {!isLoading && <RestaurantList restaurants={restaurants} types={types} />}
+      {!isLoading && (
+        <>
+          <Switch>
+            <Route path='/filter'>
+              <FilterModal types={types} />
+            </Route>
+          </Switch>
+          <RestaurantList restaurants={restaurants} types={types} />
+        </>
+      )}
     </>
   );
 };
