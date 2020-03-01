@@ -3,14 +3,15 @@ import { Type } from '../../../interfaces';
 import InputWrapper from '../../../styles/Modals/styled.checkbox';
 
 interface FormCheckBoxProps {
-  type: Type;
+  option: any;
+  display: string;
 }
 
-const FormCheckBox: React.FC<FormCheckBoxProps> = ({ type }) => {
+const FormCheckBox: React.FC<FormCheckBoxProps> = ({ option, display }) => {
   return (
     <InputWrapper>
-      <input id={`${type.type}`} type='checkbox' />
-      <label htmlFor={`${type.type}`}>{type.type}</label>
+      <input id={`${option[display]}`} type='checkbox' />
+      <label htmlFor={`${option[display]}`}>{option[display]}</label>
     </InputWrapper>
   );
 };

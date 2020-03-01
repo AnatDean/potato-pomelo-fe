@@ -5,6 +5,7 @@ import { ModalButton } from '../../../styles/Modals/styled.modalButton';
 import { ModalFormSection } from '../../../styles/Modals/styled.modalFormSection';
 import { ModalButtonList } from '../../../styles/Modals/styled.modalButtonList';
 import FormCheckBox from './FormCheckBox';
+import CheckBoxSection from './CheckBoxSection';
 
 interface FilterModalProps {
   types: Type[];
@@ -20,16 +21,7 @@ const FilterModal: React.FC<FilterModalProps> = ({ types }) => {
         <h2>FILTER</h2>
       </ModalBar>
       <form>
-        <ModalFormSection>
-          <ModalBar className='form-bar'>
-            <h2>Types</h2>
-          </ModalBar>
-          <ModalButtonList>
-            {types.map(type => {
-              return <FormCheckBox type={type} />;
-            })}
-          </ModalButtonList>
-        </ModalFormSection>
+        <CheckBoxSection title='type' data={types} />
       </form>
       <ModalBar bordered={true} className='modal-bottom'>
         <ModalButton bordered={true}>
