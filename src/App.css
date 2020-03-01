@@ -110,3 +110,8 @@ hr {
   margin: 0.2em;
   border-color: black;
 }
+
+nav {
+  display: flex;
+  justify-content: space-evenly;
+}

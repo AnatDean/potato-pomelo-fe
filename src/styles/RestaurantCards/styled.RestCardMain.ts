@@ -7,3 +7,4 @@ export const RestCardMain = styled.section`
   align-items: center;
   font-family: 'Questrial';
 `;
+
