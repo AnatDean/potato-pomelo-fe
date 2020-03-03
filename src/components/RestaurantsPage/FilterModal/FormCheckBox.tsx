@@ -1,6 +1,5 @@
 import React from 'react';
-import { Type } from '../../../interfaces';
-import InputWrapper from '../../../styles/Modals/styled.checkbox';
+import InputWrapper from '../../../styles/Modals/styled.inputwrapper';
 
 interface FormCheckBoxProps {
   option: any;

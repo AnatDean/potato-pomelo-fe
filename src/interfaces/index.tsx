@@ -10,10 +10,10 @@ export type Area = {
   location: string;
 };
 
-export type RestType = {
-  type_id: number;
+export interface RestType extends Type {
+  // type_id: number;
   rest_type_id: number;
-  type: string;
+  // type: string;
 };
 
 export type RestCardType = {

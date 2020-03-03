@@ -5,6 +5,7 @@ import { ModalButton } from '../../../styles/Modals/styled.modalButton';
 import CheckBoxSection from './CheckBoxSection';
 import { getAreas } from '../../../api';
 import { images } from '../../../styles/CardImages';
+import ToggleSection from './ToggleSection';
 
 interface FilterModalProps {
   types: Type[];
@@ -47,6 +48,9 @@ const FilterModal: React.FC<FilterModalProps> = ({ types }) => {
           property='area_name'
           data={areas}
         />
+        <ToggleSection
+          title={'More Options'}
+          data={['has_activities', 'open_late']}></ToggleSection>
       </form>
       <ModalBar bordered={true} className='modal-bottom'>
         <ModalButton bordered={true}>
