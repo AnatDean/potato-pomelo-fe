@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
-import { ModalFormSection } from '../../../styles/Modals/styled.modalFormSection';
-import { ModalBar } from '../../../styles/Modals/styled.modalBar';
-import { ModalButtonList } from '../../../styles/Modals/styled.modalButtonList';
+import { FormSection } from '../../../styles/FormElements/styled.formSection';
+import { Bar } from '../../../styles/Bars/styled.Bar';
+import { ButtonList } from '../../../styles/FormElements/styled.ButtonList';
 import FormToggle from './FormToggle';
 
 interface ToggleSectionProps {
@@ -31,12 +31,12 @@ const ToggleSection: React.FC<ToggleSectionProps> = ({
     );
   };
   return (
-    <ModalFormSection>
-      <ModalBar className='form-bar'>
+    <FormSection>
+      <Bar className='form-bar'>
         <h2>{title}</h2>
-      </ModalBar>
-      <ModalButtonList>{data.map(renderToggle)}</ModalButtonList>
-    </ModalFormSection>
+      </Bar>
+      <ButtonList>{data.map(renderToggle)}</ButtonList>
+    </FormSection>
   );
 };
 

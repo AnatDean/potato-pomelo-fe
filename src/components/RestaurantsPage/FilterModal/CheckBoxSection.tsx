@@ -1,7 +1,7 @@
 import React from 'react';
-import { ModalFormSection } from '../../../styles/Modals/styled.modalFormSection';
-import { ModalBar } from '../../../styles/Modals/styled.modalBar';
-import { ModalButtonList } from '../../../styles/Modals/styled.modalButtonList';
+import { FormSection } from '../../../styles/FormElements/styled.formSection';
+import { Bar } from '../../../styles/Bars/styled.Bar';
+import { ButtonList } from '../../../styles/FormElements/styled.ButtonList';
 import FormCheckBox from './FormCheckBox';
 
 interface CheckBoxSectionProps {
@@ -23,13 +23,13 @@ const CheckBoxSection: React.FC<CheckBoxSectionProps> = ({
   onChange
 }) => {
   return (
-    <ModalFormSection>
-      <ModalBar className='form-bar'>
+    <FormSection>
+      <Bar className='form-bar'>
         <h2>
           {title}s {imgUrl && <img src={imgUrl} alt={alt} />}{' '}
         </h2>
-      </ModalBar>
-      <ModalButtonList>
+      </Bar>
+      <ButtonList>
         {data.map((option: any) => {
           return (
             <FormCheckBox
@@ -43,8 +43,8 @@ const CheckBoxSection: React.FC<CheckBoxSectionProps> = ({
             />
           );
         })}
-      </ModalButtonList>
-    </ModalFormSection>
+      </ButtonList>
+    </FormSection>
   );
 };
 

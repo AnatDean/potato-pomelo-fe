@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { myTheme } from '../my-theme';
 
-export const ModalFormSection = styled.section`
+export const FormSection = styled.section`
   width: 100%;
   height: fit-content;
   background-color: white;

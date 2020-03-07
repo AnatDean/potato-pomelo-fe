@@ -1,17 +1,15 @@
 import styled from 'styled-components';
 import { myTheme } from '../my-theme';
 
-interface ModalButtonProps {
+interface ButtonProps {
   bordered?: boolean;
   round?: boolean;
   type?: string;
 }
 
-export const ModalButton = styled.button.attrs<ModalButtonProps>(
-  ({ type, ...rest }) => {
-    return { type: type || '', className: 'custom-button', ...rest };
-  }
-)<ModalButtonProps>`
+export const Button = styled.button.attrs<ButtonProps>(({ type, ...rest }) => {
+  return { type: type || '', className: 'custom-button', ...rest };
+})<ButtonProps>`
   width: fit-content;
   height: fit-content;
   background-color: transparent;

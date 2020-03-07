@@ -3,9 +3,10 @@ import { getRestaurants, getTypes, getFilteredRestaurants } from '../../api';
 import { RestCardType, Type } from '../../interfaces';
 import RestaurantList from './RestaurantList';
 import Loading from '../Loading';
-import FilterModal from './FilterModal';
-import { ModalButton } from '../../styles/Modals/styled.modalButton';
-import { PageInfoBar } from '../../styles/styled.PageInfoBar';
+import Filter from './FilterModal';
+import { Button } from '../../styles/FormElements/styled.Button';
+import { PageInfoBar } from '../../styles/Bars/styled.PageInfoBar';
+import Modal from '../Modal';
 
 const RestaurantPage: React.FC<{}> = () => {
   const [restaurants, setRestaurants] = useState<RestCardType[] | []>([]);
@@ -37,26 +38,27 @@ const RestaurantPage: React.FC<{}> = () => {
       {!isLoading && (
         <>
           <PageInfoBar>
-            <ModalButton
+            <Button
               round={true}
               bordered={true}
               onClick={(): void => setFilterIsOpen(true)}>
               <p>Refine</p>
-            </ModalButton>
-            <ModalButton
+            </Button>
+            <Button
               round={true}
               bordered={true}
               onClick={(): void => setFilterIsOpen(true)}>
               <p>Add a restaurant</p>
-            </ModalButton>
+            </Button>
           </PageInfoBar>
-          {filterIsOpen && (
-            <FilterModal
+          <Modal isOpen={filterIsOpen}>
+            <Filter
               filterRestaurants={filterRestaurants}
               toggleModal={(): void => setFilterIsOpen(false)}
               types={types}
             />
-          )}
+          </Modal>
+
           <RestaurantList restaurants={restaurants} types={types} />
         </>
       )}

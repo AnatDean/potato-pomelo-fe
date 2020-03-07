@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const ModalButtonList = styled.ul`
+export const ButtonList = styled.ul`
   width: 80%;
   height: 10vh;
   display: flex;

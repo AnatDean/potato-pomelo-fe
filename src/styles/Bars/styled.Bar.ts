@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 import { myTheme } from '../my-theme';
 
-interface ModalBarProps {
+interface BarProps {
   bordered?: boolean;
   noMargin?: boolean;
   fill?: boolean;
 }
 
-export const ModalBar = styled.section<ModalBarProps>`
+export const Bar = styled.section<BarProps>`
   width: 100%;
   height: fit-content;
   background-color: ${props => {

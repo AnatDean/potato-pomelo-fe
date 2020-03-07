@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { images } from '../styles/CardImages';
-import { Nav } from '../styles/styled.Nav';
+import { Nav } from '../styles/Bars/styled.Nav';
 
 const Header: React.FC<{}> = () => {
   return (
