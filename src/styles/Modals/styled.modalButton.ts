@@ -16,7 +16,7 @@ export const ModalButton = styled.button.attrs<ModalButtonProps>(
   height: fit-content;
   background-color: transparent;
   ${({ bordered }) => {
-    return `border: solid 2px ${myTheme.colors.primary_light};`;
+    if (bordered) return `border: solid 2px ${myTheme.colors.neutral};`;
   }}
   ${({ round }) => {
     if (round) return `border-radius: 30px;`;

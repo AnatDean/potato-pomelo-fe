@@ -35,6 +35,7 @@ export const images: any = {
     img: `${imgUrl}/${outlined}/multiply--v1.png`,
     alt: 'close window'
   },
+
   home: {
     img: `${imgUrl}/${filled}/home--v5.png`,
     alt: 'home'

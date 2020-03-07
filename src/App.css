@@ -154,6 +154,14 @@ label > p {
 
 .custom-button:focus,
 .custom-button:hover {
-  background-color: #9fedd7;
+  background-color: #fef9c7;
   color: black;
+}
+
+#button-close {
+  font-size: 2em;
+  font-weight: 1000;
+  width: 1em;
+  height: 1em;
+  padding-bottom: 0.5em;
 }

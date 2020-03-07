@@ -88,13 +88,13 @@ const FilterModal: React.FC<FilterModalProps> = ({
   }
   return (
     <section id='modal'>
-      <ModalBar bordered={true} className='modal-top'>
-        <ModalButton bordered={true}>
-          <img
-            onClick={toggleModal}
-            alt={images.close.alt}
-            src={images.close.img}
-          />
+      <ModalBar
+        fill={true}
+        noMargin={true}
+        bordered={true}
+        className='modal-top'>
+        <ModalButton onClick={toggleModal}>
+          <p id='button-close'>{'✖️'}</p>
         </ModalButton>
         <h2>FILTER</h2>
       </ModalBar>
@@ -145,7 +145,7 @@ const FilterModal: React.FC<FilterModalProps> = ({
           title={'More Options'}
           data={Object.entries(formInput.options)}></ToggleSection>
 
-        <ModalBar bordered={true} className='modal-bottom'>
+        <ModalBar bordered={true} fill={true} className='modal-bottom'>
           <ModalButton
             type={'reset'}
             onClick={() => setFormInput(defaultFormState)}
