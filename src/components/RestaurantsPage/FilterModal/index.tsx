@@ -10,6 +10,7 @@ import Loading from '../../Loading';
 
 interface FilterModalProps {
   types: Type[];
+  filterRestaurants(formInput: any): void;
   toggleModal(): void;
 }
 
@@ -27,18 +28,22 @@ interface formInputs {
   area: Array<number>;
   type: Array<number>;
   options: {
-    has_activities: boolean;
-    open_late: boolean;
+    has_activities: boolean | null;
+    open_late: boolean | null;
   };
 }
 
-const FilterModal: React.FC<FilterModalProps> = ({ types, toggleModal }) => {
+const FilterModal: React.FC<FilterModalProps> = ({
+  types,
+  toggleModal,
+  filterRestaurants
+}) => {
   const defaultFormState: formInputs = {
     area: [],
     type: [],
     options: {
-      has_activities: false,
-      open_late: false
+      has_activities: null,
+      open_late: null
     }
   };
 
@@ -55,6 +60,17 @@ const FilterModal: React.FC<FilterModalProps> = ({ types, toggleModal }) => {
       : currentField.filter((item: number): boolean => item !== input);
 
     setFormInput({ ...formInput, [field]: newInput });
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const submittedQuery = {
+      type: formInput.type.length ? formInput.type.join(',') : null,
+      area: formInput.area.length ? formInput.area.join(',') : null,
+      ...formInput.options
+    };
+
+    filterRestaurants(submittedQuery);
   };
 
   useEffect(() => {
@@ -82,7 +98,7 @@ const FilterModal: React.FC<FilterModalProps> = ({ types, toggleModal }) => {
         </ModalButton>
         <h2>FILTER</h2>
       </ModalBar>
-      <form>
+      <form onSubmit={handleSubmit}>
         <CheckBoxSection
           title='Type'
           onChange={(input: number): void => {
@@ -104,7 +120,7 @@ const FilterModal: React.FC<FilterModalProps> = ({ types, toggleModal }) => {
           data={areas}
         />
         <ToggleSection
-          onChange={(option: any): void => {
+          onToggle={(option: any): void => {
             const originalOptions: any = formInput.options;
             const newState: any = {
               ...formInput,
@@ -115,19 +131,32 @@ const FilterModal: React.FC<FilterModalProps> = ({ types, toggleModal }) => {
             };
             setFormInput(newState);
           }}
+          onCheck={(option: any): void => {
+            const originalOptions: any = formInput.options;
+            const newState: any = {
+              ...formInput,
+              options: {
+                ...formInput.options,
+                [option]: originalOptions[option] === null ? false : null
+              }
+            };
+            setFormInput(newState);
+          }}
           title={'More Options'}
           data={Object.entries(formInput.options)}></ToggleSection>
+
+        <ModalBar bordered={true} className='modal-bottom'>
+          <ModalButton
+            type={'reset'}
+            onClick={() => setFormInput(defaultFormState)}
+            bordered={true}>
+            <p>clear</p>
+          </ModalButton>
+          <ModalButton type={'submit'} bordered={true}>
+            <p>GO</p>
+          </ModalButton>
+        </ModalBar>
       </form>
-      <ModalBar bordered={true} className='modal-bottom'>
-        <ModalButton
-          onClick={() => setFormInput(defaultFormState)}
-          bordered={true}>
-          <p>clear</p>
-        </ModalButton>
-        <ModalButton bordered={true}>
-          <p>GO</p>
-        </ModalButton>
-      </ModalBar>
     </section>
   );
 };

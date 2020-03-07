@@ -2,11 +2,16 @@ import styled from 'styled-components';
 import { myTheme } from '../my-theme';
 
 interface ModalButtonProps {
-  readonly bordered?: boolean;
-  readonly round?: boolean;
+  bordered?: boolean;
+  round?: boolean;
+  type?: string;
 }
 
-export const ModalButton = styled.button<ModalButtonProps>`
+export const ModalButton = styled.button.attrs<ModalButtonProps>(
+  ({ type, ...rest }) => {
+    return { type: type || '', ...rest };
+  }
+)<ModalButtonProps>`
   width: fit-content;
   height: fit-content;
   background-color: transparent;

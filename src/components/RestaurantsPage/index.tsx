@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getRestaurants, getTypes } from '../../api';
+import { getRestaurants, getTypes, getFilteredRestaurants } from '../../api';
 import { RestCardType, Type } from '../../interfaces';
 import RestaurantList from './RestaurantList';
 import Loading from '../Loading';
@@ -11,7 +11,16 @@ const RestaurantPage: React.FC<{}> = () => {
   const [restaurants, setRestaurants] = useState<RestCardType[] | []>([]);
   const [types, setTypes] = useState<Type[] | []>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [filterIsOpen, setFilterIsOpen] = useState<boolean>(false);
+  const [filterIsOpen, setFilterIsOpen] = useState<boolean>(true);
+
+  const filterRestaurants = (formInput: any): void => {
+    getFilteredRestaurants(formInput)
+      .then(restaurants => {
+        setRestaurants(restaurants);
+        setFilterIsOpen(false);
+      })
+      .catch(console.dir);
+  };
 
   useEffect(() => {
     Promise.all([getRestaurants(), getTypes()])
@@ -41,6 +50,7 @@ const RestaurantPage: React.FC<{}> = () => {
           </PageInfoBar>
           {filterIsOpen && (
             <FilterModal
+              filterRestaurants={filterRestaurants}
               toggleModal={(): void => setFilterIsOpen(false)}
               types={types}
             />

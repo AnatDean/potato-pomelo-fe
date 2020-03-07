@@ -7,21 +7,24 @@ import FormToggle from './FormToggle';
 interface ToggleSectionProps {
   title: string;
   data: any;
-  onChange(option: any): void;
+  onToggle(option: any): void;
+  onCheck(option: any): void;
 }
 
 const ToggleSection: React.FC<ToggleSectionProps> = ({
   title,
   data,
-  onChange
+  onToggle,
+  onCheck
 }) => {
   const renderToggle = (toggleOption: any): ReactNode => {
     const option: string = toggleOption[0];
-    const isChecked: boolean = toggleOption[1];
+    const isChecked: boolean | null = toggleOption[1];
     return (
       <FormToggle
         key={option}
-        onChange={(): void => onChange(option)}
+        onToggle={(): void => onToggle(option)}
+        onCheck={(): void => onCheck(option)}
         isChecked={isChecked}
         option={option}
       />

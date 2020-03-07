@@ -8,7 +8,8 @@ const myTheme: DefaultTheme = {
     primary_light: '#9FEDD7',
     secondary_light: '#FEF9C7',
     neutral: '#EDEAE5',
-    highlighted: '#FEF9C7'
+    highlighted: '#FEF9C7',
+    bad: '#f06161'
   },
   opacity: {
     highlighted: '100%',

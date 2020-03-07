@@ -5,11 +5,12 @@ declare module 'styled-components' {
     colors: {
       highlighted: string;
       shadowed: string;
-      primary:string;
-      secondary:string;
-      primary_light:string;
-      secondary_light:string;
-      neutral:string
+      primary: string;
+      secondary: string;
+      primary_light: string;
+      secondary_light: string;
+      neutral: string;
+      bad: string;
     };
 
     opacity: {

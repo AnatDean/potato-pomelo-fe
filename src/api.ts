@@ -19,3 +19,12 @@ export const getAreas = (): Promise<any> => {
     return areas;
   });
 };
+
+export const getFilteredRestaurants = (params: any): Promise<any> => {
+  console.log(params);
+  return api
+    .get('/restaurants', { params })
+    .then(({ data: { restaurants } }) => {
+      return restaurants;
+    });
+};

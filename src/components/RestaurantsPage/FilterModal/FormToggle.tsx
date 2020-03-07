@@ -2,30 +2,41 @@ import React from 'react';
 import InputWrapper from '../../../styles/Modals/styled.inputwrapper';
 import Switch from 'react-switch';
 import { myTheme } from '../../../styles/my-theme';
+import FormCheckBox from './FormCheckBox';
 
 interface FormToggleProps {
-  isChecked: boolean;
+  isChecked: boolean | null;
   option: string;
-  onChange(): void;
+  onToggle(): void;
+  onCheck(): void;
 }
 
 const FormToggle: React.FC<FormToggleProps> = ({
   option,
-  onChange,
+  onToggle,
+  onCheck,
   isChecked
 }) => {
+  const isToggleActive: boolean = isChecked === null ? false : true;
   return (
     <InputWrapper spreadItems={true}>
       <label htmlFor={`${option}toggle`} className='switch'>
         <p>{option}</p>
       </label>
+      <FormCheckBox
+        option={{ key: "Don't care" }}
+        display={'key'}
+        onChange={onCheck}
+        isChecked={!isToggleActive}
+      />
+
       <Switch
         id={`${option}toggle`}
-        offColor={myTheme.colors.shadowed}
+        offColor={isToggleActive ? myTheme.colors.bad : myTheme.colors.shadowed}
         height={20}
         onColor={myTheme.colors.primary_light}
-        onChange={onChange}
-        checked={isChecked}
+        onChange={onToggle}
+        checked={isChecked === true ? true : false}
       />
     </InputWrapper>
   );

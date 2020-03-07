@@ -14,8 +14,9 @@ export const InputWrapper = styled.section<InputWrapperProps>`
       props.spreadItems &&
       `
      display: flex;
-     justify-content: space-between;
-     padding-right: 1em;
+     align-items: center;
+      justify-content: space-around;
+     padding-right: 0.3em;
     `
     );
   }}
