@@ -4,12 +4,14 @@ import { RestCardType, Type } from '../../interfaces';
 import RestaurantList from './RestaurantList';
 import Loading from '../Loading';
 import FilterModal from './FilterModal';
-import { Switch, Route } from 'react-router-dom';
+import { ModalButton } from '../../styles/Modals/styled.modalButton';
+import { PageInfoBar } from '../../styles/styled.PageInfoBar';
 
 const RestaurantPage: React.FC<{}> = () => {
   const [restaurants, setRestaurants] = useState<RestCardType[] | []>([]);
   const [types, setTypes] = useState<Type[] | []>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [filterIsOpen, setFilterIsOpen] = useState<boolean>(false);
 
   useEffect(() => {
     Promise.all([getRestaurants(), getTypes()])
@@ -25,11 +27,24 @@ const RestaurantPage: React.FC<{}> = () => {
       {isLoading && <Loading />}
       {!isLoading && (
         <>
-          <Switch>
-            <Route path='/filter'>
-              <FilterModal types={types} />
-            </Route>
-          </Switch>
+          <PageInfoBar>
+            <ModalButton
+              round={true}
+              onClick={(): void => setFilterIsOpen(true)}>
+              Refine
+            </ModalButton>
+            <ModalButton
+              round={true}
+              onClick={(): void => setFilterIsOpen(true)}>
+              Add a restaurant
+            </ModalButton>
+          </PageInfoBar>
+          {filterIsOpen && (
+            <FilterModal
+              toggleModal={(): void => setFilterIsOpen(false)}
+              types={types}
+            />
+          )}
           <RestaurantList restaurants={restaurants} types={types} />
         </>
       )}

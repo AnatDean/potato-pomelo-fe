@@ -10,6 +10,7 @@ import Loading from '../../Loading';
 
 interface FilterModalProps {
   types: Type[];
+  toggleModal(): void;
 }
 
 // TODO:  possible refactors
@@ -26,7 +27,7 @@ interface formInputs {
   };
 }
 
-const FilterModal: React.FC<FilterModalProps> = ({ types }) => {
+const FilterModal: React.FC<FilterModalProps> = ({ types, toggleModal }) => {
   const [areas, setAreas] = useState<Area[] | []>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [formInput, setFormInput] = useState<formInputs>({
@@ -55,7 +56,11 @@ const FilterModal: React.FC<FilterModalProps> = ({ types }) => {
     <section id='modal'>
       <ModalBar bordered={true} className='modal-top'>
         <ModalButton bordered={true}>
-          <img alt={images.close.alt} src={images.close.img} />
+          <img
+            onClick={toggleModal}
+            alt={images.close.alt}
+            src={images.close.img}
+          />
         </ModalButton>
         <h2>FILTER</h2>
       </ModalBar>

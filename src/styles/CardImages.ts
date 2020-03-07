@@ -1,35 +1,42 @@
-const imgUrl: string = 'https://img.icons8.com/material-outlined/24/000000';
+const imgUrl: string = 'https://img.icons8.com';
+
+const outlined = 'material-outlined/24/000000';
+const filled = 'material/100/000000';
 
 export const images: any = {
   nightImage: {
-    img: `${imgUrl}/partly-cloudy-night.png`,
+    img: `${imgUrl}/${outlined}/partly-cloudy-night.png`,
     alt: 'open late'
   },
   dayImage: {
-    img: `${imgUrl}/sun.png`,
+    img: `${imgUrl}/${outlined}/sun.png`,
     alt: 'daytime only'
   },
 
   hasActivitiesImage: {
-    img: `${imgUrl}/football2.png`,
+    img: `${imgUrl}/${outlined}/football2.png`,
     alt: 'has activities image'
   },
   bar: {
-    img: `${imgUrl}/bar.png`,
+    img: `${imgUrl}/${outlined}/bar.png`,
     alt: 'bar'
   },
   restaurant: {
-    img: `${imgUrl}/dining-room.png`
+    img: `${imgUrl}/${outlined}/dining-room.png`
   },
   cafe: {
-    img: `${imgUrl}/cafe.png`
+    img: `${imgUrl}/${outlined}/cafe.png`
   },
   pin: {
-    img: `${imgUrl}/marker.png`,
+    img: `${imgUrl}/${outlined}/marker.png`,
     alt: 'location pin'
   },
   close: {
-    img: `${imgUrl}/multiply--v1.png`,
+    img: `${imgUrl}/${outlined}/multiply--v1.png`,
     alt: 'close window'
+  },
+  home: {
+    img: `${imgUrl}/${filled}/home--v5.png`,
+    alt: 'home'
   }
 };

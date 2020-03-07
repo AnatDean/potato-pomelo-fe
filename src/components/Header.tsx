@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { images } from '../styles/CardImages';
+import { Nav } from '../styles/styled.Nav';
 
 const Header: React.FC<{}> = () => {
   return (
@@ -14,22 +16,13 @@ const Header: React.FC<{}> = () => {
           🥔
         </span>
       </h1>
-      <hr />
-      <nav>
+
+      <Nav>
         <Link to='/'>
           {' '}
-          <p>Home</p>
+          <img alt={images.home.alt} src={images.home.img} />
         </Link>
-        <Link to='/filter'>
-          {' '}
-          <p>Filter</p>
-        </Link>
-        <Link to='/add'>
-          {' '}
-          <p>Add a restaurant</p>
-        </Link>
-      </nav>
-      <hr />
+      </Nav>
     </header>
   );
 };
