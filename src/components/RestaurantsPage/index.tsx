@@ -31,12 +31,12 @@ const RestaurantPage: React.FC<{}> = () => {
             <ModalButton
               round={true}
               onClick={(): void => setFilterIsOpen(true)}>
-              Refine
+              <p>Refine</p>
             </ModalButton>
             <ModalButton
               round={true}
               onClick={(): void => setFilterIsOpen(true)}>
-              Add a restaurant
+              <p>Add a restaurant</p>
             </ModalButton>
           </PageInfoBar>
           {filterIsOpen && (

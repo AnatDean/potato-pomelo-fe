@@ -13,6 +13,11 @@ interface FilterModalProps {
   toggleModal(): void;
 }
 
+enum FieldForArrays {
+  area = 'area',
+  type = 'type'
+}
+
 // TODO:  possible refactors
 // formik
 // yup - schema for form
@@ -20,7 +25,7 @@ interface FilterModalProps {
 
 interface formInputs {
   area: Array<number>;
-  type: Array<number | string>;
+  type: Array<number>;
   options: {
     has_activities: boolean;
     open_late: boolean;
@@ -28,16 +33,29 @@ interface formInputs {
 }
 
 const FilterModal: React.FC<FilterModalProps> = ({ types, toggleModal }) => {
-  const [areas, setAreas] = useState<Area[] | []>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [formInput, setFormInput] = useState<formInputs>({
+  const defaultFormState: formInputs = {
     area: [],
     type: [],
     options: {
       has_activities: false,
       open_late: false
     }
-  });
+  };
+
+  const [areas, setAreas] = useState<Area[] | []>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [formInput, setFormInput] = useState<formInputs>(defaultFormState);
+
+  const toggleItemsInFields: any = (field: FieldForArrays, input: number) => {
+    const currentField: any = formInput[field];
+    const inputAlreadySelected: boolean = currentField.includes(input);
+
+    const newInput = !inputAlreadySelected
+      ? [...currentField, input]
+      : currentField.filter((item: number): boolean => item !== input);
+
+    setFormInput({ ...formInput, [field]: newInput });
+  };
 
   useEffect(() => {
     getAreas()
@@ -67,9 +85,10 @@ const FilterModal: React.FC<FilterModalProps> = ({ types, toggleModal }) => {
       <form>
         <CheckBoxSection
           title='Type'
-          onChange={(input: string | number): void =>
-            setFormInput({ ...formInput, type: [...formInput.type, input] })
-          }
+          onChange={(input: number): void => {
+            toggleItemsInFields('type', input);
+          }}
+          checkedValues={formInput.type}
           imgUrl={images.bar.img}
           alt={images.bar.alt}
           property='type'
@@ -78,9 +97,8 @@ const FilterModal: React.FC<FilterModalProps> = ({ types, toggleModal }) => {
         <CheckBoxSection
           title='Area'
           imgUrl={images.pin.img}
-          onChange={(input: number): void =>
-            setFormInput({ ...formInput, area: [...formInput.area, input] })
-          }
+          checkedValues={formInput.area}
+          onChange={(input: number): void => toggleItemsInFields('area', input)}
           alt={images.pin.alt}
           property='area_name'
           data={areas}
@@ -101,7 +119,9 @@ const FilterModal: React.FC<FilterModalProps> = ({ types, toggleModal }) => {
           data={Object.entries(formInput.options)}></ToggleSection>
       </form>
       <ModalBar bordered={true} className='modal-bottom'>
-        <ModalButton bordered={true}>
+        <ModalButton
+          onClick={() => setFormInput(defaultFormState)}
+          bordered={true}>
           <p>clear</p>
         </ModalButton>
         <ModalButton bordered={true}>

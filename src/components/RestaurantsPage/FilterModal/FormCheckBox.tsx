@@ -5,16 +5,23 @@ interface FormCheckBoxProps {
   option: any;
   display: string;
   onChange(): void;
+  isChecked: boolean;
 }
 
 const FormCheckBox: React.FC<FormCheckBoxProps> = ({
   option,
   display,
-  onChange
+  onChange,
+  isChecked
 }) => {
   return (
     <InputWrapper>
-      <input onChange={onChange} id={`${option[display]}`} type='checkbox' />
+      <input
+        checked={isChecked}
+        onChange={onChange}
+        id={`${option[display]}`}
+        type='checkbox'
+      />
       <label htmlFor={`${option[display]}`}>{option[display]}</label>
     </InputWrapper>
   );

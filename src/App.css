@@ -21,6 +21,7 @@ button {
   text-decoration: none;
   display: flex;
   text-align: center;
+  font-family: 'Questrial';
 }
 
 ul,
@@ -120,7 +121,6 @@ nav {
   grid-template-columns: 15% 70% 15%;
   grid-template-rows: 1fr;
   grid-template-areas: 'XButton title other';
-  
 }
 
 .modal-top > button {

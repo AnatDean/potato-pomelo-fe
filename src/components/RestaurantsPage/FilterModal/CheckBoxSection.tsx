@@ -10,12 +10,14 @@ interface CheckBoxSectionProps {
   data: any;
   alt?: string;
   imgUrl?: string;
-  onChange(input: string | number): void;
+  checkedValues: number[];
+  onChange(input: number): void;
 }
 const CheckBoxSection: React.FC<CheckBoxSectionProps> = ({
   title,
   property,
   data,
+  checkedValues,
   alt,
   imgUrl,
   onChange
@@ -33,6 +35,9 @@ const CheckBoxSection: React.FC<CheckBoxSectionProps> = ({
             <FormCheckBox
               key={option[`${title.toLowerCase()}_id`]}
               onChange={() => onChange(option[`${title.toLowerCase()}_id`])}
+              isChecked={checkedValues.includes(
+                option[`${title.toLowerCase()}_id`]
+              )}
               display={property}
               option={option}
             />
