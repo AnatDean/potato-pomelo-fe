@@ -10,24 +10,33 @@ interface CheckBoxSectionProps {
   data: any;
   alt?: string;
   imgUrl?: string;
+  onChange(input: string | number): void;
 }
 const CheckBoxSection: React.FC<CheckBoxSectionProps> = ({
   title,
   property,
   data,
   alt,
-  imgUrl
+  imgUrl,
+  onChange
 }) => {
   return (
     <ModalFormSection>
       <ModalBar className='form-bar'>
         <h2>
-          {title} {imgUrl && <img src={imgUrl} alt={alt} />}{' '}
+          {title}s {imgUrl && <img src={imgUrl} alt={alt} />}{' '}
         </h2>
       </ModalBar>
       <ModalButtonList>
         {data.map((option: any) => {
-          return <FormCheckBox display={property} option={option} />;
+          return (
+            <FormCheckBox
+              key={option[`${title.toLowerCase()}_id`]}
+              onChange={() => onChange(option[`${title.toLowerCase()}_id`])}
+              display={property}
+              option={option}
+            />
+          );
         })}
       </ModalButtonList>
     </ModalFormSection>

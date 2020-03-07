@@ -1,15 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
 import InputWrapper from '../../../styles/Modals/styled.inputwrapper';
 import Switch from 'react-switch';
 import { myTheme } from '../../../styles/my-theme';
 
 interface FormToggleProps {
-  option: any;
+  isChecked: boolean;
+  option: string;
+  onChange(): void;
 }
 
-const FormToggle: React.FC<FormToggleProps> = ({ option }) => {
-  const [isChecked, setIsChecked] = useState<boolean>(false);
-
+const FormToggle: React.FC<FormToggleProps> = ({
+  option,
+  onChange,
+  isChecked
+}) => {
   return (
     <InputWrapper spreadItems={true}>
       <label htmlFor={`${option}toggle`} className='switch'>
@@ -20,7 +24,7 @@ const FormToggle: React.FC<FormToggleProps> = ({ option }) => {
         offColor={myTheme.colors.shadowed}
         height={20}
         onColor={myTheme.colors.primary_light}
-        onChange={() => setIsChecked(!isChecked)}
+        onChange={onChange}
         checked={isChecked}
       />
     </InputWrapper>
