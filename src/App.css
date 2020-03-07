@@ -151,3 +151,9 @@ nav {
 label > p {
   font-weight: bolder;
 }
+
+.custom-button:focus,
+.custom-button:hover {
+  background-color: #9fedd7;
+  color: black;
+}

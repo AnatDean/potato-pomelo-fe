@@ -9,7 +9,7 @@ interface ModalButtonProps {
 
 export const ModalButton = styled.button.attrs<ModalButtonProps>(
   ({ type, ...rest }) => {
-    return { type: type || '', ...rest };
+    return { type: type || '', className: 'custom-button', ...rest };
   }
 )<ModalButtonProps>`
   width: fit-content;
