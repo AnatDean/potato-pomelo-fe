@@ -9,13 +9,15 @@ interface FormToggleProps {
   option: string;
   onToggle(): void;
   onCheck(): void;
+  checkBoxText?: string;
 }
 
 const FormToggle: React.FC<FormToggleProps> = ({
   option,
   onToggle,
   onCheck,
-  isChecked
+  isChecked,
+  checkBoxText
 }) => {
   const isToggleActive: boolean = isChecked === null ? false : true;
   return (
@@ -24,7 +26,7 @@ const FormToggle: React.FC<FormToggleProps> = ({
         <p>{option}</p>
       </label>
       <FormCheckBox
-        option={{ key: "Don't care" }}
+        option={{ key: checkBoxText || "Don't care" }}
         display={'key'}
         onChange={onCheck}
         isChecked={!isToggleActive}

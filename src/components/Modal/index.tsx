@@ -7,9 +7,9 @@ interface ModalProps {
 
 const Modal: React.FC<ModalProps> = ({ children, isOpen }) => {
   return isOpen ? (
-    <aside tabIndex={-1} id='modal'>
+    <div style={{ height: 'fit-content' }} tabIndex={-1} id='modal'>
       {children}
-    </aside>
+    </div>
   ) : null;
 };
 

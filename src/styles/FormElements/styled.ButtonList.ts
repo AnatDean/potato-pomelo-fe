@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 export const ButtonList = styled.ul`
-  width: 80%;
-  height: 10vh;
+  width: 70%;
+  height: fit-content;
   display: flex;
   flex-flow: column wrap;
   padding: 0;

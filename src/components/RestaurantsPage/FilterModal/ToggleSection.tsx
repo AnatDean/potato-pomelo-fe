@@ -9,13 +9,16 @@ interface ToggleSectionProps {
   data: any;
   onToggle(option: any): void;
   onCheck(option: any): void;
+  checkBoxText?: string;
+
 }
 
 const ToggleSection: React.FC<ToggleSectionProps> = ({
   title,
   data,
   onToggle,
-  onCheck
+  onCheck,
+  checkBoxText
 }) => {
   const renderToggle = (toggleOption: any): ReactNode => {
     const option: string = toggleOption[0];
@@ -27,6 +30,8 @@ const ToggleSection: React.FC<ToggleSectionProps> = ({
         onCheck={(): void => onCheck(option)}
         isChecked={isChecked}
         option={option}
+        checkBoxText={checkBoxText}
+
       />
     );
   };

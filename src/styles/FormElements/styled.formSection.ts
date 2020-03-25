@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { myTheme } from '../my-theme';
 
 export const FormSection = styled.section`
+  display: block;
   width: 100%;
   height: fit-content;
   background-color: white;
