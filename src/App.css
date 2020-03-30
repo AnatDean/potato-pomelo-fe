@@ -169,3 +169,9 @@ label > p {
 input {
   font-family: Questrial;
 }
+
+option,
+select {
+  border: 1px solid #9fedd7;
+  font-family: Questrial;
+}

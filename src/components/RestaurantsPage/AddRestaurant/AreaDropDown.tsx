@@ -3,6 +3,7 @@ import { Area } from '../../../interfaces';
 import { FormSection } from '../../../styles/FormElements/styled.formSection';
 import { Bar } from '../../../styles/Bars/styled.Bar';
 import InputWrapper from '../../../styles/FormElements/styled.inputwrapper';
+import { Select } from '../../../styles/FormElements/styled.Select';
 
 interface DropDownProps {
   areas: Area[];
@@ -35,15 +36,14 @@ const DropDown: React.FC<DropDownProps> = ({
             </h2>
           </label>
         </Bar>
-
-        <select
+        <Select
           onChange={(e): void => onChange(+e.target.value)}
           id='area-input'>
           <option value='' selected disabled hidden>
-            Choose here
+            Select Area
           </option>
           {areas.map(renderDropDownOption)}
-        </select>
+        </Select>
       </InputWrapper>
     </FormSection>
   );
