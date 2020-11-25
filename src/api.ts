@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { addRestformInputs } from './interfaces/';
 
 const api = axios.create({ baseURL: 'http://localhost:9090/api' });
 
@@ -27,4 +28,17 @@ export const getFilteredRestaurants = (params: any): Promise<any> => {
     .then(({ data: { restaurants } }) => {
       return restaurants;
     });
+};
+
+export const postRestaurant = (newRest: addRestformInputs): Promise<any> => {
+  const postBody = {
+    ...newRest
+  };
+  return api
+    .post('/restaurants', postBody)
+    .then(({ data }) => {
+      console.log('posted,', data.restaurant);
+      return data.restaurant;
+    })
+    .catch(console.dir);
 };

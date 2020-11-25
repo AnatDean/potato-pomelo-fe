@@ -5,48 +5,39 @@ import InputWrapper from '../../../styles/FormElements/styled.inputwrapper';
 import Input from '../../../styles/FormElements/styled.input';
 import { Area, Type } from '../../../interfaces';
 import Loading from '../../Loading';
-import { getAreas, getTypes } from '../../../api';
+import { getAreas, getTypes, postRestaurant } from '../../../api';
 import { images } from '../../../styles/CardImages';
 import DropDown from './AreaDropDown';
 import CheckBoxSection from '../FilterModal/CheckBoxSection';
 import ToggleSection from '../FilterModal/ToggleSection';
 import { FormSection } from '../../../styles/FormElements/styled.formSection';
+import { addRestformInputs } from '../../../interfaces/';
 
 interface AddRestaurantProps {
   toggleModal(): void;
 }
 
-interface formInputs {
-  name: string;
-  area: number | null;
-  type: Array<number>;
-  website: string;
-  options: {
-    has_activities: boolean | null;
-    open_late: boolean | null;
-  };
-}
-
 enum FieldForArrays {
-  area = 'area',
-  type = 'type'
+  area = 'area_id',
+  type = 'types'
 }
 
 const AddRestaurant: React.FC<AddRestaurantProps> = ({ toggleModal }) => {
-  const defaultFormState: formInputs = {
-    area: null,
-    name: '',
-    type: [],
-    website: '',
-    options: {
-      has_activities: null,
-      open_late: null
-    }
+  const defaultFormState: addRestformInputs = {
+    area_id: null,
+    rest_name: 'new-rest',
+    types: [],
+    website: 'www.new-rest.com',
+    has_activities: true,
+    opens_at: null,
+    closes_at: null
   };
   const [areas, setAreas] = useState<Area[] | []>([]);
   const [types, setTypes] = useState<Type[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [formInput, setFormInput] = useState<formInputs>(defaultFormState);
+  const [formInput, setFormInput] = useState<addRestformInputs>(
+    defaultFormState
+  );
 
   useEffect(() => {
     Promise.all([getAreas(), getTypes()])
@@ -67,25 +58,17 @@ const AddRestaurant: React.FC<AddRestaurantProps> = ({ toggleModal }) => {
   };
 
   const handleToggle = (option: any): void => {
-    const originalOptions: any = formInput.options;
     const newState: any = {
       ...formInput,
-      options: {
-        ...formInput.options,
-        [option]: !originalOptions[option]
-      }
+      has_activities: !formInput.has_activities
     };
     setFormInput(newState);
   };
 
   const handleActivateToggle = (option: any): void => {
-    const originalOptions: any = formInput.options;
     const newState: any = {
       ...formInput,
-      options: {
-        ...formInput.options,
-        [option]: originalOptions[option] === null ? false : null
-      }
+      has_activities: formInput.has_activities === null ? false : null
     };
     setFormInput(newState);
   };
@@ -101,6 +84,11 @@ const AddRestaurant: React.FC<AddRestaurantProps> = ({ toggleModal }) => {
     setFormInput({ ...formInput, [field]: newInput });
   };
 
+  const handleSubmit = (e: React.FormEvent): void => {
+    e.preventDefault();
+    postRestaurant(formInput);
+  };
+
   if (isLoading) {
     return <Loading />;
   } else {
@@ -112,7 +100,7 @@ const AddRestaurant: React.FC<AddRestaurantProps> = ({ toggleModal }) => {
           </Button>
           <h2>NEW RESTAURANT </h2>
         </Bar>
-        <form>
+        <form onSubmit={handleSubmit}>
           <FormSection>
             <InputWrapper type='text'>
               <Bar className='form-bar'>
@@ -125,9 +113,11 @@ const AddRestaurant: React.FC<AddRestaurantProps> = ({ toggleModal }) => {
                 placeholder='restaurant...'
                 required
                 id='name-input'
-                // value={name}
+                value={formInput.rest_name}
                 type='text'
-                onChange={(e): void => handleChange('name', e.target.value)}
+                onChange={(e): void =>
+                  handleChange('rest_name', e.target.value)
+                }
               />
             </InputWrapper>
           </FormSection>
@@ -143,26 +133,24 @@ const AddRestaurant: React.FC<AddRestaurantProps> = ({ toggleModal }) => {
                 type='text'
                 required
                 id='website-input'
-                // value={website}
+                value={formInput.website}
                 onChange={(e): void => handleChange('website', e.target.value)}
               />
             </InputWrapper>
           </FormSection>
-
           <DropDown
             title='Area'
             img={images.pin.img}
             alt={images.pin.alt}
             areas={areas}
-            onChange={(value: number): void => handleChange('area', value)}
+            onChange={(value: number): void => handleChange('area_id', value)}
           />
-
           <CheckBoxSection
             title='Type'
             onChange={(input: number): void => {
-              checkItemsFields('type', input);
+              checkItemsFields('types', input);
             }}
-            checkedValues={formInput.type}
+            checkedValues={formInput.types}
             imgUrl={images.bar.img}
             alt={images.bar.alt}
             property='type'
@@ -173,7 +161,10 @@ const AddRestaurant: React.FC<AddRestaurantProps> = ({ toggleModal }) => {
             onCheck={handleActivateToggle}
             title={'More Options'}
             checkBoxText='Not now...'
-            data={Object.entries(formInput.options)}></ToggleSection>
+            data={[
+              ['has_activites', formInput.has_activities]
+            ]}></ToggleSection>
+          // TODO: ADD CLOSES AT + OPENS AT form inputs
           <Bar bordered={true} fill={true} className='modal-bottom'>
             <Button
               type={'reset'}

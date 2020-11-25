@@ -14,7 +14,7 @@ export interface RestType extends Type {
   // type_id: number;
   rest_type_id: number;
   // type: string;
-};
+}
 
 export type RestCardType = {
   rest_id: number;
@@ -26,3 +26,13 @@ export type RestCardType = {
   website: string;
   rest_types: RestType[];
 };
+
+export interface addRestformInputs {
+  rest_name: string;
+  area_id: number | null;
+  types: Array<number>;
+  website: string;
+  has_activities: boolean | null;
+  opens_at: Date | null;
+  closes_at: Date | null;
+}
